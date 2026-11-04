@@ -23,6 +23,18 @@ jobs:
         env:
           ASSET_PREFIX: https://${{ secrets.S3_BUCKET }}.s3.us-east-1.amazonaws.com
 
+      - name: Verificar secrets
+        env:
+          A: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          B: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          C: ${{ secrets.AWS_SESSION_TOKEN }}
+          D: ${{ secrets.S3_BUCKET }}
+        run: |
+          echo "ACCESS_KEY: ${#A} caracteres"
+          echo "SECRET_KEY: ${#B} caracteres"
+          echo "SESSION_TOKEN: ${#C} caracteres"
+          echo "S3_BUCKET: ${#D} caracteres"
+
       - name: Configurar credenciales de AWS
         uses: aws-actions/configure-aws-credentials@v6
         with:
